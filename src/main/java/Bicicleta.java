@@ -1,15 +1,30 @@
 public class Bicicleta extends Vehiculo {
+	private String estiloBicicleta;
 	private String tipo;
 
+	public Bicicleta(String marca, String modelo, int anio, int precio, String estiloBicicleta) {
+		super (marca, modelo, anio, precio);
+		this.estiloBicicleta = estiloBicicleta;
+		this.tipo = "vehiculo";
+	}
+
+	public Bicicleta() {
+    }
+
+	public String getEstiloBicicleta() {
+		return this.estiloBicicleta;
+	}
+
+	public void setEstiloBicicleta(String estiloBicicleta) {
+		this.estiloBicicleta = estiloBicicleta;
+	}
+
 	public String getTipo() {
-		return this.tipo;
+		return "bicicleta";
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public String toString() {
+		return super.toString() + ", Estilo: " + this.estiloBicicleta;
 	}
 
-	public Bicicleta(String marca, String modelo, int anio, int precio, String tipo) {
-		throw new UnsupportedOperationException();
-	}
 }

@@ -1,8 +1,30 @@
-public class Vehiculo {
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tipo")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = Auto.class, name = "auto"),
+		@JsonSubTypes.Type(value = Camion.class, name = "camion"),
+		@JsonSubTypes.Type(value = Bicicleta.class, name = "bicicleta")
+})
+
+public abstract class Vehiculo {
 	private String marca;
 	private String modelo;
 	private int anio;
 	private int precio;
+
+	public Vehiculo(String marca, String modelo, int anio, int precio) {
+		this.marca = marca;
+		this.modelo = modelo;
+		this.anio = anio;
+		this.precio = precio;
+	}
+
+	public Vehiculo() {
+	}
+
+	public abstract String getTipo();
 
 	public String getMarca() {
 		return this.marca;
@@ -37,6 +59,6 @@ public class Vehiculo {
 	}
 
 	public String toString() {
-		throw new UnsupportedOperationException();
+		return "Marca: "+ this.marca + ", Modelo: " + this.modelo + ", Anio: " + this.anio + ", Precio: " + this.precio;
 	}
 }
